@@ -14,12 +14,13 @@ struct Contact
 typedef struct Contact sContact;
 
 // Global variables of struct Contact type.
-sContact *first = NULL;
-sContact *last = NULL;
+sContact *Node_First = NULL;
+
 
 static void removeNewline(char *str);
 static void Phonebook_Add(void);
 static void Phonebook_Delete(void);
+static void Phonebook_Display(void);
 void displayNode(void);
 
 
@@ -76,7 +77,7 @@ static void Phonebook_Add(void)
 {
     printf("ADD CONTACT:\n");
     int8 nm[50],ph_no[20];
-    sContact *p=first,*old;
+    sContact *p=Node_First,*old;
     //Taking user Input:
     printf("Enter Name:\n");
     fgets(nm,50,stdin);
@@ -96,21 +97,21 @@ static void Phonebook_Add(void)
     //Set newNode next to NULL
     newNode -> next = NULL;
     // if List is Empty
-    if (NULL == first)
+    if (NULL == Node_First)
     {
-        first = newNode;
+        Node_First = newNode;
         printf("Contact Added Successfully\n");
         return;
     }
-    //if list is not empty, do string comparision,to check whether new Node comes before first
-    if (strcmp(newNode -> name, first -> name) < 0)
+    //if list is not empty, do string comparision,to check whether new Node comes before Node_First
+    if (strcmp(newNode -> name, Node_First -> name) < 0)
     {
-        newNode ->next = first;
-        first = newNode;
+        newNode ->next = Node_First;
+        Node_First = newNode;
         printf("Contact Added Successfully\n");
         return;
     }
-    // if first is less alphatical order than newNode
+    // if Node_First is less alphatical order than newNode
     while(NULL != p && strcmp(newNode -> name,p->name)>0)
     {
         old = p;
@@ -125,7 +126,7 @@ static void Phonebook_Add(void)
 
 void displayNode(void)
 {
-    sContact *temp = first;
+    sContact *temp = Node_First;
     unsigned char i = 1;
     while(temp != NULL)
     {   
@@ -143,7 +144,7 @@ static void Phonebook_Delete(void)
     fgets(nm, 50, stdin);
     removeNewline(nm);
 
-    sContact *p = first;
+    sContact *p = Node_First;
     sContact *temp;
 
     // If list is empty
@@ -153,10 +154,10 @@ static void Phonebook_Delete(void)
         return;
     }
 
-    // If name matches first node
+    // If name matches Node_First node
     if (strcmp(p->name, nm) == 0)
     {
-        first = p->next;
+        Node_First = p->next;
         free(p);
         printf("Contact Deleted Successfully\n");
         return;
