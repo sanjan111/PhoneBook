@@ -1,19 +1,29 @@
-#include "PhoneBookMenu.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "datatype.h"
 
 // Structure created for Linked list
 struct Contact
 {
-    char *name;
-    char *phone_no;
+    int8 *name;
+    int8 *phone_no;
     struct Contact *next;
 };
+// Using typedef to make alias for struct Contact
+typedef struct Contact sContact;
+
+// Global variables of struct Contact type.
+sContact *first = NULL;
+sContact *last = NULL;
+
+void Phonebook_Add();
 
 // Function definition of Menu( which contains evrything on phonebook(like main.c for phonebook))
-void PhoneBookMenu()
+void Phonebook_Menu()
 {
     while (1)
     {
-        int choose;
+        uint8 choose;
         printf("MENU:\n\n");
         printf("1. Add Contact\n");
         printf("2. Delete Contact\n");
@@ -22,24 +32,41 @@ void PhoneBookMenu()
         printf("5. Exit\n");
         printf("Choose the option: ");
         scanf("%d",&choose);
+        printf("\n");
+
 
         switch (choose)
         {
             case 1:
-            // Add_Contact();
+                Phonebook_Add();
                 break;
             case 2:
-                //Delete_Contact();
+                //Phonebook_Delete();
                 break;
             case 3:
-            // Search_Contact();
+            // Phonebook_Search();
                 break;
             case 4:
-                //Display_Contact();
+                //Phonebook_Display();
                 break;
             default:
                 printf("Exiting...\n");// deliberate choice (Exiting on any number than 1 to 4)
                 return;
         }
     }
+}
+
+void Phonebook_Add()
+{
+    printf("ADD CONTACT:\n");
+    // Dynamically Allocating memory for newNode
+    sContact *newNode = (sContact*) malloc(sizeof(sContact));  
+    if (NULL == newNode)
+    {
+        printf("Memory not Allocated\n");
+        return;
+    }
+     
+
+
 }
