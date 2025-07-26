@@ -1,0 +1,19 @@
+# Ignore compiled C files
+*.o
+*.out
+*.exe
+
+# Ignore temporary/backup files
+*~
+*.log
+*.tmp
+
+# Ignore editor swap files (Vim/NeoVim)
+*.swp
+*.swo
+
+# Ignore macOS/Linux hidden files
+.DS_Store
+
+# Ignore Visual Studio Code settings (optional)
+.vscode/
