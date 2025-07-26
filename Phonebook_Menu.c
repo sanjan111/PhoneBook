@@ -50,7 +50,10 @@ void Phonebook_Menu()
                 printf("\n");
                 break;
             case 2:
-                //Phonebook_Delete();
+                Phonebook_Delete();
+                printf("\n\nDisplaying\n");
+                displayNode();
+                printf("\n");
                 break;
             case 3:
             // Phonebook_Search();
@@ -134,5 +137,51 @@ void displayNode(void)
 
 static void Phonebook_Delete(void)
 {
-    
+    printf("DELETE CONTACT:\n");
+    int8 nm[50];
+    int32 count = 0;
+    sContact *p=first,*old=NULL;
+    //Taking user Input:
+    printf("Enter Name:\n");
+    fgets(nm,50,stdin);
+    removeNewline(nm);
+
+    // if List is Empty
+    if (NULL == first)
+    {
+        printf("No Contact to delete\n");
+        return;
+    }
+    // if value found in first node
+    if (first -> name == nm)
+    {
+        first = first -> next;
+        free(p);// remeber earlier p = first
+        printf("Contacted Deleted Successfully\n");
+        return; 
+    }
+    // if name is  not found in first 
+    while (NULL != p -> next)
+    {
+        old = p;
+        p =  p->next;
+        if (old->name == nm)
+        {
+            old -> next = p->next;
+            free(p);
+            printf("Contacted Deleted Successfully\n");
+            return;
+        }
+         
+    }
+    if (p->next ->name ==nm)
+    {
+        old -> next = NULL;
+        free(p->next);
+        printf("Contacted Deleted Successfully\n");
+    }
+    else
+    {
+        printf("No Match Contact Found\n");
+    }
 }
