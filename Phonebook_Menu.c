@@ -60,7 +60,7 @@ void Phonebook_Menu()
             // Phonebook_Search();
                 break;
             case 4:
-                //Phonebook_Display();
+                Phonebook_Display();
                 break;
             default:
                 printf("Exiting...\n");// deliberate choice (Exiting on any number than 1 to 4)
@@ -178,4 +178,26 @@ static void Phonebook_Delete(void)
     }
 
     printf("No Match Contact Found\n");
+}
+
+static void Phonebook_Display(void)
+{
+    sContact *temp = Node_First;
+    uint8 index = 1;
+
+    if (temp == NULL)
+    {
+        printf("Phonebook is empty.\n");
+        return;
+    }
+
+    printf("\n%-5s %-30s %-20s\n", "S.No", "Name", "Phone Number");
+    printf("------------------------------------------------------------\n");
+
+    while (temp != NULL)
+    {
+        printf("%-5d %-30s %-20s\n", index, temp->name, temp->phone_no);
+        temp = temp->next;
+        index++;
+    }
 }
