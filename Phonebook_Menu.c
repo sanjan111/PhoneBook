@@ -5,8 +5,8 @@
 // Structure created for Linked list
 struct Contact
 {
-    int8 *name;
-    int8 *phone_no;
+    int8 name[50];
+    int8 phone_no[20];
     struct Contact *next;
 };
 // Using typedef to make alias for struct Contact
@@ -59,6 +59,8 @@ void Phonebook_Menu()
 void Phonebook_Add()
 {
     printf("ADD CONTACT:\n");
+    //Taking user Input:
+
     // Dynamically Allocating memory for newNode
     sContact *newNode = (sContact*) malloc(sizeof(sContact));  
     if (NULL == newNode)
