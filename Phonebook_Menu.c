@@ -139,40 +139,42 @@ static void Phonebook_Delete(void)
 {
     printf("DELETE CONTACT:\n");
     int8 nm[50];
-    int32 count = 0;
-    sContact *p=first,*old=NULL;
-    //Taking user Input:
     printf("Enter Name:\n");
-    fgets(nm,50,stdin);
+    fgets(nm, 50, stdin);
     removeNewline(nm);
 
-    // if List is Empty
-    if (NULL == first)
+    sContact *p = first;
+    sContact *temp;
+
+    // If list is empty
+    if (p == NULL)
     {
         printf("No Contact to delete\n");
         return;
     }
-    // if value found in first node
-    if (strcmp(first->name,nm)==0)
+
+    // If name matches first node
+    if (strcmp(p->name, nm) == 0)
     {
-        first = first -> next;
-        free(p);// remeber earlier p = first
-        printf("Contacted Deleted Successfully\n");
-        return; 
+        first = p->next;
+        free(p);
+        printf("Contact Deleted Successfully\n");
+        return;
     }
-    // if name is  not found in first 
-    while (NULL != p)
+
+    // Traverse and find matching node in p->next
+    while (p->next != NULL)
     {
-        old = p;
-        p =  p->next;
-        if (strcmp(p->name,nm)==0)
+        if (strcmp(p->next->name, nm) == 0)
         {
-            old -> next = p->next;
-            free(p);
-            printf("Contacted Deleted Successfully\n");
+            temp = p->next;
+            p->next = temp->next;
+            free(temp);
+            printf("Contact Deleted Successfully\n");
             return;
         }
-         
+        p = p->next;
     }
+
     printf("No Match Contact Found\n");
 }
