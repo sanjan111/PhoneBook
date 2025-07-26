@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "datatype.h"
 
 // Structure created for Linked list
@@ -16,7 +17,9 @@ typedef struct Contact sContact;
 sContact *first = NULL;
 sContact *last = NULL;
 
+void removeNewline(char *str);
 void Phonebook_Add();
+
 
 // Function definition of Menu( which contains evrything on phonebook(like main.c for phonebook))
 void Phonebook_Menu()
@@ -32,6 +35,7 @@ void Phonebook_Menu()
         printf("5. Exit\n");
         printf("Choose the option: ");
         scanf("%d",&choose);
+        getchar();
         printf("\n");
 
 
@@ -55,12 +59,21 @@ void Phonebook_Menu()
         }
     }
 }
+void removeNewline(char *str)
+{
+    str[strcspn(str,"\n")] = '\0';
+}
 
 void Phonebook_Add()
 {
     printf("ADD CONTACT:\n");
+    int8 nm[50],ph_no[20];
     //Taking user Input:
-
+    printf("Enter Name:\n");
+    fgets(nm,50,stdin);
+    removeNewline(nm);
+    printf("Enter Phone No:\n");
+    scanf("%s",&ph_no);//check
     // Dynamically Allocating memory for newNode
     sContact *newNode = (sContact*) malloc(sizeof(sContact));  
     if (NULL == newNode)
@@ -68,6 +81,19 @@ void Phonebook_Add()
         printf("Memory not Allocated\n");
         return;
     }
+    // copying the name and phone no to the newNode
+    strcpy(newNode->name, nm);
+    strcpy(newNode->phone_no,ph_no);
+    //Set newNode next to NULL
+    newNode -> next = NULL;
+    // if List is Empty
+    if (NULL == first)
+    {
+        first = newNode;
+        printf("Contact Added Successfully\n");
+        return;
+    }
+    
      
 
 
