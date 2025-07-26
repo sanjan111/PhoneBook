@@ -17,8 +17,8 @@ typedef struct Contact sContact;
 sContact *first = NULL;
 sContact *last = NULL;
 
-void removeNewline(char *str);
-void Phonebook_Add();
+static void removeNewline(char *str);
+static void Phonebook_Add();
 
 
 // Function definition of Menu( which contains evrything on phonebook(like main.c for phonebook))
@@ -37,7 +37,6 @@ void Phonebook_Menu()
         scanf("%d",&choose);
         getchar();
         printf("\n");
-
 
         switch (choose)
         {
@@ -59,15 +58,16 @@ void Phonebook_Menu()
         }
     }
 }
-void removeNewline(char *str)
+static void removeNewline(char *str)
 {
     str[strcspn(str,"\n")] = '\0';
 }
 
-void Phonebook_Add()
+static void Phonebook_Add(void)
 {
     printf("ADD CONTACT:\n");
     int8 nm[50],ph_no[20];
+    sContact *p=first,*old;
     //Taking user Input:
     printf("Enter Name:\n");
     fgets(nm,50,stdin);
@@ -101,9 +101,13 @@ void Phonebook_Add()
         printf("Contact Added Successfully\n");
         return;
     }
-    
-    
+    // if first is less alphatical order than newNode
+    while(NULL != p && strcmp(newNode -> name,p->name)>0)
+    {
+        old = p;
+        p = p -> next;
+    }
+    old->next = newNode;
+    newNode -> next = p;
      
-
-
 }
