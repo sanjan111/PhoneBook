@@ -93,6 +93,15 @@ void Phonebook_Add()
         printf("Contact Added Successfully\n");
         return;
     }
+    //if list is not empty, do string comparision,to check whether new Node comes before first
+    if (strcmp(newNode -> name, first -> name) < 0)
+    {
+        newNode ->next = first;
+        first = newNode;
+        printf("Contact Added Successfully\n");
+        return;
+    }
+    
     
      
 
