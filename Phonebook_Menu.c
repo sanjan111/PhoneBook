@@ -18,7 +18,10 @@ sContact *first = NULL;
 sContact *last = NULL;
 
 static void removeNewline(char *str);
-static void Phonebook_Add();
+static void Phonebook_Add(void);
+static void Phonebook_Delete(void);
+void displayNode(void);
+
 
 
 // Function definition of Menu( which contains evrything on phonebook(like main.c for phonebook))
@@ -42,6 +45,9 @@ void Phonebook_Menu()
         {
             case 1:
                 Phonebook_Add();
+                printf("\n\nDisplaying\n");
+                displayNode();
+                printf("\n");
                 break;
             case 2:
                 //Phonebook_Delete();
@@ -110,4 +116,23 @@ static void Phonebook_Add(void)
     old->next = newNode;
     newNode -> next = p;
      
+}
+
+
+
+void displayNode(void)
+{
+    sContact *temp = first;
+    unsigned char i = 1;
+    while(temp != NULL)
+    {   
+       printf("%s\t\t",temp-> name);
+       printf("%s\n",temp->phone_no);
+       temp = temp->next;
+    }
+}
+
+static void Phonebook_Delete(void)
+{
+    
 }
