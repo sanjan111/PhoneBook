@@ -153,7 +153,7 @@ static void Phonebook_Delete(void)
         return;
     }
     // if value found in first node
-    if (first -> name == nm)
+    if (strcmp(first->name,nm)==0)
     {
         first = first -> next;
         free(p);// remeber earlier p = first
@@ -161,11 +161,11 @@ static void Phonebook_Delete(void)
         return; 
     }
     // if name is  not found in first 
-    while (NULL != p -> next)
+    while (NULL != p)
     {
         old = p;
         p =  p->next;
-        if (old->name == nm)
+        if (strcmp(p->name,nm)==0)
         {
             old -> next = p->next;
             free(p);
@@ -174,14 +174,5 @@ static void Phonebook_Delete(void)
         }
          
     }
-    if (p->next ->name ==nm)
-    {
-        old -> next = NULL;
-        free(p->next);
-        printf("Contacted Deleted Successfully\n");
-    }
-    else
-    {
-        printf("No Match Contact Found\n");
-    }
+    printf("No Match Contact Found\n");
 }
