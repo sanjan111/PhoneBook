@@ -31,13 +31,13 @@ void Phonebook_Menu()
     while (1)
     {
         uint8 choose;
-        printf("MENU:\n\n");
+        printf("\n\nMENU:\n\n");
         printf("1. Add Contact\n");
         printf("2. Delete Contact\n");
         printf("3. Search Contacts\n");
         printf("4. Display Contacts\n");
         printf("5. Exit\n");
-        printf("Choose the option: ");
+        printf("\nChoose the option: ");
         scanf("%d",&choose);
         getchar();
         printf("\n");
@@ -46,15 +46,9 @@ void Phonebook_Menu()
         {
             case 1:
                 Phonebook_Add();
-                printf("\n\nDisplaying\n");
-                displayNode();
-                printf("\n");
                 break;
             case 2:
                 Phonebook_Delete();
-                printf("\n\nDisplaying\n");
-                displayNode();
-                printf("\n");
                 break;
             case 3:
             // Phonebook_Search();
@@ -75,7 +69,7 @@ static void removeNewline(char *str)
 
 static void Phonebook_Add(void)
 {
-    printf("ADD CONTACT:\n");
+    printf("ADD CONTACT:\n\n");
     int8 nm[50],ph_no[20];
     sContact *p=Node_First,*old;
     //Taking user Input:
@@ -123,7 +117,8 @@ static void Phonebook_Add(void)
 }
 
 
-
+/*
+// this function is for testing
 void displayNode(void)
 {
     sContact *temp = Node_First;
@@ -135,10 +130,11 @@ void displayNode(void)
        temp = temp->next;
     }
 }
+*/
 
 static void Phonebook_Delete(void)
 {
-    printf("DELETE CONTACT:\n");
+    printf("DELETE CONTACT:\n\n");
     int8 nm[50];
     printf("Enter Name:\n");
     fgets(nm, 50, stdin);
