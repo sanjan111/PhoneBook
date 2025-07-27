@@ -257,11 +257,11 @@ static void Phonebook_Search(void)
     }
     if (index > 1)
     {
-        printf("Search Result Found\n");
+        printf("\nSearch Result Found\n");
     }
     else
     {
-        printf("Search Result Not Found\n");
+        printf("\nSearch Result Not Found\n");
     }
 #if DEBUG2
     printf("Phonebook_Search() - Exit\n");
