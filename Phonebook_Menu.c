@@ -99,6 +99,9 @@ static void Phonebook_Add(void)
     if (NULL == newNode)
     {
         printf("Memory not Allocated\n");
+#if DEBUG1
+    printf("newNode - %d\n",newNode);
+#endif
         return;
     }
     // copying the name and phone no to the newNode
