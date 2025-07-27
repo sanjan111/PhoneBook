@@ -63,12 +63,13 @@ void Phonebook_Menu()
                 break;
             default:
                 printf("Exiting...\n");// deliberate choice (Exiting on any number than 1 to 4)
-        }
-    }
 #if DEBUG2
     printf("Phonebook_Menu() - Exit");
 #endif
-return;
+                return;
+        }       
+    }
+
 }
 static void removeNewline(char *str)
 {
