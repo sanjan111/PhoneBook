@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "datatype.h"
+#include "config.h"
+
 
 // Structure created for Linked list
 struct Contact
@@ -21,13 +23,16 @@ static void removeNewline(char *str);
 static void Phonebook_Add(void);
 static void Phonebook_Delete(void);
 static void Phonebook_Display(void);
-void displayNode(void);
+//void displayNode(void);
 
 
 
 // Function definition of Menu( which contains evrything on phonebook(like main.c for phonebook))
 void Phonebook_Menu()
 {
+#if DEBUG2
+    printf("Phonebook_Menu() - Entry");
+#endif
     while (1)
     {
         uint8 choose;
@@ -58,9 +63,12 @@ void Phonebook_Menu()
                 break;
             default:
                 printf("Exiting...\n");// deliberate choice (Exiting on any number than 1 to 4)
-                return;
         }
     }
+#if DEBUG2
+    printf("Phonebook_Menu() - Exit");
+#endif
+return;
 }
 static void removeNewline(char *str)
 {
@@ -69,9 +77,13 @@ static void removeNewline(char *str)
 
 static void Phonebook_Add(void)
 {
+#if DEBUG2
+    printf("Phonebook_Add() - Entry\n");
+#endif
     printf("ADD CONTACT:\n\n");
     int8 nm[50],ph_no[20];
     sContact *p=Node_First,*old;
+
     //Taking user Input:
     printf("Enter Name:\n");
     fgets(nm,50,stdin);
@@ -79,7 +91,10 @@ static void Phonebook_Add(void)
     printf("Enter Phone No:\n");
     scanf("%s",&ph_no);//check
     // Dynamically Allocating memory for newNode
-    sContact *newNode = (sContact*) malloc(sizeof(sContact));  
+    sContact *newNode = (sContact*) malloc(sizeof(sContact));
+#if DEBUG1
+    printf("newNode - %d\n",newNode);
+#endif
     if (NULL == newNode)
     {
         printf("Memory not Allocated\n");
@@ -95,6 +110,9 @@ static void Phonebook_Add(void)
     {
         Node_First = newNode;
         printf("Contact Added Successfully\n");
+#if DEBUG2
+printf("Phonebook_Add() - Exit\n");
+#endif
         return;
     }
     //if list is not empty, do string comparision,to check whether new Node comes before Node_First
@@ -103,6 +121,9 @@ static void Phonebook_Add(void)
         newNode ->next = Node_First;
         Node_First = newNode;
         printf("Contact Added Successfully\n");
+#if DEBUG2
+printf("Phonebook_Add() - Exit\n");
+#endif 
         return;
     }
     // if Node_First is less alphatical order than newNode
@@ -113,7 +134,10 @@ static void Phonebook_Add(void)
     }
     old->next = newNode;
     newNode -> next = p;
-     
+#if DEBUG2
+    printf("Phonebook_Add() - Exit\n");
+#endif    
+    return;
 }
 
 
@@ -147,6 +171,9 @@ static void Phonebook_Delete(void)
     if (p == NULL)
     {
         printf("No Contact to delete\n");
+#if DEBUG2
+printf("Phonebook_Delete() - Exit\n");
+#endif 
         return;
     }
 
@@ -156,6 +183,9 @@ static void Phonebook_Delete(void)
         Node_First = p->next;
         free(p);
         printf("Contact Deleted Successfully\n");
+#if DEBUG2
+printf("Phonebook_Delete() - Exit\n");
+#endif 
         return;
     }
 
@@ -168,12 +198,19 @@ static void Phonebook_Delete(void)
             p->next = temp->next;
             free(temp);
             printf("Contact Deleted Successfully\n");
+#if DEBUG2
+printf("Phonebook_Delete() - Exit\n");
+#endif    
             return;
         }
         p = p->next;
     }
 
     printf("No Match Contact Found\n");
+#if DEBUG2
+printf("Phonebook_Delete() - Exit\n");
+#endif 
+    return;
 }
 
 static void Phonebook_Display(void)
@@ -184,6 +221,9 @@ static void Phonebook_Display(void)
     if (temp == NULL)
     {
         printf("Phonebook is empty.\n");
+#if DEBUG2
+printf("Phonebook_Display() - Exit\n");
+#endif 
         return;
     }
 
@@ -196,4 +236,9 @@ static void Phonebook_Display(void)
         temp = temp->next;
         index++;
     }
+
+#if DEBUG2
+printf("Phonebook_Display() - Exit\n");
+#endif 
+    return;
 }
