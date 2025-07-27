@@ -22,6 +22,7 @@ sContact *Node_First = NULL;
 static void removeNewline(char *str);
 static void Phonebook_Add(void);
 static void Phonebook_Delete(void);
+static void Phonebook_Search(void);
 static void Phonebook_Display(void);
 //void displayNode(void);
 
@@ -56,7 +57,7 @@ void Phonebook_Menu()
                 Phonebook_Delete();
                 break;
             case 3:
-            // Phonebook_Search();
+                Phonebook_Search();
                 break;
             case 4:
                 Phonebook_Display();
@@ -217,6 +218,11 @@ static void Phonebook_Delete(void)
 #if DEBUG2
     printf("Phonebook_Delete() - Exit\n");
 #endif 
+    return;
+}
+
+static void Phonebook_Display(void)
+{
     return;
 }
 
