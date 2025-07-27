@@ -19,7 +19,7 @@ typedef struct Contact sContact;
 sContact *Node_First = NULL;
 
 
-static void removeNewline(char *str);
+static void Phonebook_removeNewline(char *str);
 static void Phonebook_Add(void);
 static void Phonebook_Delete(void);
 static void Phonebook_Search(void);
@@ -72,7 +72,7 @@ void Phonebook_Menu()
     }
 
 }
-static void removeNewline(char *str)
+static void Phonebook_removeNewline(char *str)
 {
     str[strcspn(str,"\n")] = '\0';
 }
@@ -89,7 +89,7 @@ static void Phonebook_Add(void)
     //Taking user Input:
     printf("Enter Name:\n");
     fgets(nm,50,stdin);
-    removeNewline(nm);
+    Phonebook_removeNewline(nm);
     printf("Enter Phone No:\n");
     scanf("%s",&ph_no);//check
     // Dynamically Allocating memory for newNode
@@ -170,7 +170,7 @@ static void Phonebook_Delete(void)
     int8 nm[50];
     printf("Enter Name:\n");
     fgets(nm, 50, stdin);
-    removeNewline(nm);
+    Phonebook_removeNewline(nm);
 
     sContact *p = Node_First;
     sContact *temp;
@@ -231,7 +231,7 @@ static void Phonebook_Search(void)
     sContact *p = Node_First;
     printf("Enter Name:\n");
     fgets(nm, 50, stdin);
-    removeNewline(nm);
+    Phonebook_removeNewline(nm);
     len = strlen(nm);
     // Check if List is Empty or Not
     // If it is Empty
