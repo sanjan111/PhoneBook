@@ -255,7 +255,7 @@ static void Phonebook_Search(void)
         }
         p = p -> next;
     }
-    if (index > 0)
+    if (index > 1)
     {
         printf("Search Result Found\n");
     }
