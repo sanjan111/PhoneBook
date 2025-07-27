@@ -22,6 +22,7 @@ sContact *Node_First = NULL;
 static void removeNewline(char *str);
 static void Phonebook_Add(void);
 static void Phonebook_Delete(void);
+static void Phonebook_Search(void);
 static void Phonebook_Display(void);
 //void displayNode(void);
 
@@ -56,7 +57,7 @@ void Phonebook_Menu()
                 Phonebook_Delete();
                 break;
             case 3:
-            // Phonebook_Search();
+                Phonebook_Search();
                 break;
             case 4:
                 Phonebook_Display();
@@ -218,6 +219,56 @@ static void Phonebook_Delete(void)
     printf("Phonebook_Delete() - Exit\n");
 #endif 
     return;
+}
+
+static void Phonebook_Search(void)
+{
+#if DEBUG2
+    printf("Phonebook_Search() - Entry\n");
+#endif 
+    int8 nm[50];
+    int32 len,index=1;
+    sContact *p = Node_First;
+    printf("Enter Name:\n");
+    fgets(nm, 50, stdin);
+    removeNewline(nm);
+    len = strlen(nm);
+    // Check if List is Empty or Not
+    // If it is Empty
+    if (NULL == Node_First)
+    {
+        printf("No contacts to search");
+#if DEBUG2
+    printf("Phonebook_Search() - Exit\n");
+#endif
+        return;
+    }
+    // If list is Not Empty
+    printf("\n%-5s %-30s %-20s\n", "S.No", "Name", "Phone Number");
+    printf("------------------------------------------------------------\n");
+    while ( NULL != p)
+    {
+        if (strncmp(p->name,nm,len) == 0)
+        {
+            printf("%-5d %-30s %-20s\n", index, p->name, p->phone_no);
+            index++;
+        }
+        p = p -> next;
+    }
+    if (index > 1)
+    {
+        printf("\nSearch Result Found\n");
+    }
+    else
+    {
+        printf("\nSearch Result Not Found\n");
+    }
+#if DEBUG2
+    printf("Phonebook_Search() - Exit\n");
+#endif
+    return;
+
+    
 }
 
 static void Phonebook_Display(void)
