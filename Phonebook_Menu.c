@@ -248,7 +248,7 @@ static void Phonebook_Search(void)
     printf("------------------------------------------------------------\n");
     while ( NULL != p)
     {
-        if (strncmp(p->name,nm,len))
+        if (strncmp(p->name,nm,len) == 0)
         {
             printf("%-5d %-30s %-20s\n", index, p->name, p->phone_no);
             index++;
