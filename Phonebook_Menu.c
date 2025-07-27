@@ -111,7 +111,7 @@ static void Phonebook_Add(void)
         Node_First = newNode;
         printf("Contact Added Successfully\n");
 #if DEBUG2
-printf("Phonebook_Add() - Exit\n");
+    printf("Phonebook_Add() - Exit\n");
 #endif
         return;
     }
@@ -122,7 +122,7 @@ printf("Phonebook_Add() - Exit\n");
         Node_First = newNode;
         printf("Contact Added Successfully\n");
 #if DEBUG2
-printf("Phonebook_Add() - Exit\n");
+    printf("Phonebook_Add() - Exit\n");
 #endif 
         return;
     }
@@ -158,6 +158,9 @@ void displayNode(void)
 
 static void Phonebook_Delete(void)
 {
+#if DEBUG2
+    printf("Phonebook_Delete() - Entry\n");
+#endif 
     printf("DELETE CONTACT:\n\n");
     int8 nm[50];
     printf("Enter Name:\n");
@@ -172,7 +175,7 @@ static void Phonebook_Delete(void)
     {
         printf("No Contact to delete\n");
 #if DEBUG2
-printf("Phonebook_Delete() - Exit\n");
+    printf("Phonebook_Delete() - Exit\n");
 #endif 
         return;
     }
@@ -184,7 +187,7 @@ printf("Phonebook_Delete() - Exit\n");
         free(p);
         printf("Contact Deleted Successfully\n");
 #if DEBUG2
-printf("Phonebook_Delete() - Exit\n");
+    printf("Phonebook_Delete() - Exit\n");
 #endif 
         return;
     }
@@ -199,7 +202,7 @@ printf("Phonebook_Delete() - Exit\n");
             free(temp);
             printf("Contact Deleted Successfully\n");
 #if DEBUG2
-printf("Phonebook_Delete() - Exit\n");
+    printf("Phonebook_Delete() - Exit\n");
 #endif    
             return;
         }
@@ -208,13 +211,16 @@ printf("Phonebook_Delete() - Exit\n");
 
     printf("No Match Contact Found\n");
 #if DEBUG2
-printf("Phonebook_Delete() - Exit\n");
+    printf("Phonebook_Delete() - Exit\n");
 #endif 
     return;
 }
 
 static void Phonebook_Display(void)
 {
+#if DEBUG2
+    printf("Phonebook_Display() - Entry\n");
+#endif 
     sContact *temp = Node_First;
     uint8 index = 1;
 
@@ -222,7 +228,7 @@ static void Phonebook_Display(void)
     {
         printf("Phonebook is empty.\n");
 #if DEBUG2
-printf("Phonebook_Display() - Exit\n");
+    printf("Phonebook_Display() - Exit\n");
 #endif 
         return;
     }
@@ -238,7 +244,7 @@ printf("Phonebook_Display() - Exit\n");
     }
 
 #if DEBUG2
-printf("Phonebook_Display() - Exit\n");
+    printf("Phonebook_Display() - Exit\n");
 #endif 
     return;
 }
